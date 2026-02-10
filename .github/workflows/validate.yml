@@ -1,0 +1,47 @@
+name: Validate Projects
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "projects/**"
+      - "dev/**"
+  push:
+    branches: [main]
+    paths:
+      - "projects/**"
+      - "dev/**"
+
+jobs:
+  validate-and-build:
+    name: Validate & Build projects.json
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validate and build projects.json
+        run: node dev/scripts/build-projects.js
+
+      - name: Check for uncommitted changes to generated/
+        run: |
+          git diff --exit-code dev/generated/ || {
+            echo ""
+            echo "❌ dev/generated/projects.json is out of date!"
+            echo "   Run 'node dev/scripts/build-projects.js' locally and commit the result."
+            echo ""
+            exit 1
+          }
+
+      - name: Upload projects.json artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: projects-json
+          path: dev/generated/projects.json
