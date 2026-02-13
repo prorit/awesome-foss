@@ -12,6 +12,7 @@ Want to add your project? See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ### Active
 
+- [ATOM8: AI-Powered Data Structurizer & Insights Platform](https://github.com/riteshgharat/atom8) — AI platform for structuring messy and scattered data.
 - [LAN Share App](https://github.com/riteshgharat/lan-share-app) — A peer-to-peer file sharing app for local networks.
 
 ### Dormant
