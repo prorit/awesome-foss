@@ -84,6 +84,20 @@
     "looking_for_contributors": {
       "type": "boolean",
       "description": "Whether the project is actively looking for contributors"
+    },
+    "domain": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Web", "AI/ML", "GenAI", "Blockchain", "IoT/Embedded"]
+      },
+      "uniqueItems": true,
+      "description": "Project domain/category tags"
+    },
+    "stars": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "GitHub repository star count"
     }
   },
   "additionalProperties": false

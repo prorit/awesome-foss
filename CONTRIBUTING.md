@@ -81,7 +81,9 @@ Include: what it does, tech stack, how to get started, and how to contribute.
       "contact": "your@email.com"
     }
   ],
-  "looking_for_contributors": true
+  "looking_for_contributors": true,
+  "domain": ["Web"],
+  "stars": 0
 }
 ```
 
@@ -99,6 +101,8 @@ Include: what it does, tech stack, how to get started, and how to contribute.
 | `github_repo` | string | ✅ | Must start with `https://github.com/` |
 | `maintainers` | object[] | ✅ | At least one `{ name, contact }` |
 | `looking_for_contributors` | boolean | ✅ | `true` or `false` |
+| `domain` | string[] | ❌ | One or more of: `Web`, `AI/ML`, `GenAI`, `Blockchain`, `IoT/Embedded` |
+| `stars` | number | ❌ | Non-negative integer (GitHub star count) |
 
 ## Testing Locally
 

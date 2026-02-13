@@ -127,6 +127,36 @@ function validateProject(project, folderName) {
     errors.push(`"looking_for_contributors" must be a boolean`);
   }
 
+  // domain (optional)
+  if ("domain" in project) {
+    if (!Array.isArray(project.domain)) {
+      errors.push(`"domain" must be an array`);
+    } else {
+      const validDomains = ["Web", "AI/ML", "GenAI", "Blockchain", "IoT/Embedded"];
+      for (const d of project.domain) {
+        if (typeof d !== "string") {
+          errors.push(`Each item in "domain" must be a string`);
+        } else if (!validDomains.includes(d)) {
+          errors.push(`"domain" contains invalid value: "${d}". Must be one of: ${validDomains.join(", ")}`);
+        }
+      }
+      // Check uniqueness
+      const unique = new Set(project.domain);
+      if (unique.size !== project.domain.length) {
+        errors.push(`"domain" array contains duplicate values`);
+      }
+    }
+  }
+
+  // stars (optional)
+  if ("stars" in project) {
+    if (!Number.isInteger(project.stars)) {
+      errors.push(`"stars" must be an integer`);
+    } else if (project.stars < 0) {
+      errors.push(`"stars" must be non-negative`);
+    }
+  }
+
   return errors;
 }
 
